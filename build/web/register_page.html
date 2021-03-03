@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <title>Register</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="CSS/basic_setup.css" />
+        <link href="CSS/register.css" rel="stylesheet" type="text/css" />
+        <link href="CSS/button_action.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="register-page" >
+            <div class="sign-up">                
+                <img class="sign-up-img" src="pm2.png" alt="sign-up-img">        
+                <h5 class="sign-up-text">Manage your projects now</h5>        
+            </div>
+            <div class="form">
+                <h5 class="sign-up-text">Sign up now</h5>
+                <form id="reg-form" class="register-form" action="CoordinatorRegisterServlet" method="post">
+                    <!--<img height="200" alt="Image preview..." class="profile-pic"><br>
+                    <input name="user_pic" class="input" type="file" onchange="previewFile()">-->
+                    <input name="fname" class="input" type="text" placeholder="First name"/>
+                    <input name="lname" class="input" type="text" placeholder="Last name"/>
+                    <input name="department" class="input" type="text" placeholder="Department"/>
+                    <input name="subject" class="input" type="text" placeholder="Subject"/>
+                    <input name="email" class="input" type="email" placeholder="Email"/>
+                    <input name="password" class="input" type="password" placeholder="Password"/>
+                    <br>
+                    <div class="loader" id="loader" style="display: none">
+                        <span class="fa fa-refresh fa-spin fa-3x"></span>
+                        <h5>Please wait...</h5>
+                    </div>
+                    <button class="btn" id="btn-submit" type="submit">create</button>
+                    <p class="message">Already registered? <a href="login_page.jsp">Sign In</a></p>
+                </form>
+            </div>
+            <div class="modal-container" id="modal-container">
+                <div class="modal">
+                    <div class="modal-content">
+                        <img class="modal-img" src="Images/check.png" alt="success">
+                        <p class="modal-text">Registration Successful</p>
+                    </div>
+                    <a class="row btn modal-button" id="button-close" href="login_page.jsp">Continue</a>
+                </div>
+            </div>
+        </div>        
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="register.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                console.log('loaded...');
+                $('#reg-form').on('submit', function (event) {
+                    event.preventDefault();
+                    let form = new FormData(this);
+                    $('#submit-btn').hide();
+                    $('#loader').show();
+                    $.ajax({
+                        url: "CoordinatorRegisterServlet",
+                        type: 'POST',
+                        data: form,
+                        success: function (data, textstatus, adfa) {
+                            console.log(data);
+                            $('#submit-btn').show();
+                            $('#loader').hide();
+                        },
+                        error: function (adfa, textstatus, errorThrown) {
+                            console.log(adfa);
+                            $('#submit-btn').show();
+                            $('#loader').hide();
+                        },
+                        processData: false,
+                        contentType: false
+                    });
+                });
+            });
+            const container = document.getElementById('modal-container');
+            const open = document.getElementById('btn-submit');
+            const close = document.getElementById('button-close');
+
+            open.addEventListener('click', () => {
+                container.classList.add('show');
+            });
+
+            close.addEventListener('click', () => {
+                container.classList.remove('show');
+            });
+        </script>
+    </body>
+</html>

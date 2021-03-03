@@ -1,0 +1,72 @@
+/*-------------------------------
+            Form
+--------------------------------*/
+
+.register-page {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../Images/login-bg.jpg);
+  background-size: cover;
+}
+
+.sign-up {
+  border-radius: 3px;
+  background-color: #fff;
+  max-width: 350px;
+  padding: 5rem;
+  text-align: center;
+  max-height: 100vh;
+  display: none;
+}
+
+.sign-up-img {
+  width: 30rem;
+  padding-right: 3rem;
+}
+
+.sign-up-text {
+  margin: 0 auto;
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #2b2a2a  ;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.form {
+  border-radius: 3px;
+  background: #FFFFFF;
+  max-width: 350px;
+  padding: 5rem 0;
+  text-align: center;
+  max-height: 100vh;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.input {
+  font-family: "Lato", sans-serif;
+  outline: 0;
+  background: #ffffff;
+  width: 70%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 10px;
+  font-size: 14px;
+  border-bottom: #c0c0c0 solid 1px;
+}
+
+.input:focus {
+  border-bottom: #000 solid 1px;
+}
+
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.form .message a {
+  color: #2998ff;
+  text-decoration: none;
+}
