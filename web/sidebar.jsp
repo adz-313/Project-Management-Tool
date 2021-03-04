@@ -24,6 +24,9 @@
                 <li id="mentors">
                     <a href="mentors.jsp">Mentors</a>
                 </li>
+                <li id="students">
+                    <a href="students.jsp">Students</a>
+                </li>
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Add</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">

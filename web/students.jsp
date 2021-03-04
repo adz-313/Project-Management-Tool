@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Mentors</title>
+        <title>Students</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
     <body>
@@ -33,14 +33,14 @@
                         <h3 class="mt-2">Loading...</h3>
                     </div>
                     <div class="row">
-                        <h1 class="mr-auto">Mentors</h1>
+                        <h1 class="mr-auto">Students</h1>
                         <form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" id="search-mentors" placeholder="Search" aria-label="Search">
+                            <input class="form-control mr-sm-2" type="search" id="search-students" placeholder="Search" aria-label="Search">
                         </form>
                         <!--<input class="form-control ml-auto" id="search-mentors" type="search" placeholder="Search" aria-label="Search">-->
                         <!--                        <input type="text" class="ml-auto" >-->
                     </div>
-                    <div class="container-fluid mt-3" id="mentors-container">
+                    <div class="container-fluid mt-3" id="students-container">
 
                     </div>
                 </div>
@@ -50,28 +50,28 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="Javascript/sidebar.js"></script>      
-        <script src="Javascript/mentors.js"></script> 
+        <script src="Javascript/students.js"></script> 
         <script>
             $(document).ready(function (e) {
-                $('#search-mentors').keyup(function () {
+                $('#search-students').keyup(function () {
                     var txt = $(this).val();
                     if (txt === '')
                     {
                         $.ajax({
-                            url: 'load_mentors.jsp',
+                            url: 'load_students.jsp',
                             success: function (data, textStatus, jqXHR) {
                                 $('#loader').hide();
-                                $('#mentors-container').html(data);
+                                $('#students-container').html(data);
                             }
                         });
                     } else
                     {
-                        $('#mentors-container').html('');
+                        $('#students-container').html('');
                         $.ajax({
-                            url: 'search_mentors.jsp',
+                            url: 'search_students.jsp',
                             data: {search: txt},
                             success: function (data, textStatus, jqXHR) {
-                                $('#mentors-container').html(data);
+                                $('#students-container').html(data);
                             }
                         });
                     }

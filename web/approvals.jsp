@@ -1,4 +1,3 @@
-<%@page import="com.project_management.entities.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page errorPage="error_page.jsp" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

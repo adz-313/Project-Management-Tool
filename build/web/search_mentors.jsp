@@ -6,9 +6,11 @@
 <div class="row">
 <%
     DatabaseInterface db = new DatabaseInterface(ConnectionProvider.getConnection());
-    ArrayList<Mentor> mentors = db.getMentors();
-    System.out.println(mentors.size());
+    String search = request.getParameter("search");
+    System.out.println(search);
+    ArrayList<Mentor> mentors = db.getMentorsByName(search);
     for (Mentor m : mentors) {
+       
 %>
 <div class="col-md-4">
     <div class="card mt-2">
@@ -19,6 +21,8 @@
         </div>
     </div>
 </div>
+
+
 <%
     }
 %>

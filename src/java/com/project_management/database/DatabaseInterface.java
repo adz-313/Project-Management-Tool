@@ -3,9 +3,9 @@ package com.project_management.database;
 import com.project_management.entities.Coordinator;
 import com.project_management.entities.Mentor;
 import com.project_management.entities.Project;
+import com.project_management.entities.Student;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class DatabaseInterface 
 {
@@ -23,11 +23,10 @@ public class DatabaseInterface
         boolean dataInserted = false;
         try
         {
-            String query = "insert into project(title, description, user_id) values(?,?,?);";
+            String query = "insert into project(title, description, user_id) values(?,?);";
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.setString(1, project.getTitle());
             pstmt.setString(2, project.getDescription());
-            pstmt.setInt(3, project.getUser_id());
             pstmt.executeUpdate();
             dataInserted = true;
         }
@@ -76,7 +75,6 @@ public class DatabaseInterface
                 project.setProject_id(rs.getInt("project_id"));
                 project.setTitle(rs.getString("title"));
                 project.setDescription(rs.getString("description"));
-                project.setUser_id(rs.getInt("user_id"));
                 project.setTimestamp(rs.getTimestamp("timestamp"));                
             }
         }
@@ -84,7 +82,6 @@ public class DatabaseInterface
         {
             System.out.println(e);
         }
-        System.out.println(project.getTitle());
         return project;
     }
     
@@ -149,7 +146,7 @@ public class DatabaseInterface
             String query = "select * from mentors";
             PreparedStatement pstmt = con.prepareStatement(query);
             ResultSet rs = pstmt.executeQuery(); 
-            if(rs.next())
+            while(rs.next())
             {
                 int id = rs.getInt("id");
                 String fname = rs.getString("fname");
@@ -167,5 +164,123 @@ public class DatabaseInterface
             e.printStackTrace();
         }
         return mentors;
+    }
+    
+    public ArrayList<Mentor> getMentorsByName(String search)
+    {
+        ArrayList<Mentor> mentors = new ArrayList<Mentor>();
+        try
+        {            
+            String query = "select * from mentors where fname like '%" + search + "%' or lname like '%" + search + "%'";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery(); 
+            while(rs.next())
+            {
+                int id = rs.getInt("id");
+                String fname = rs.getString("fname");
+                String lname = rs.getString("lname");
+                String skills = rs.getString("skills");
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+                Timestamp timestamp = rs.getTimestamp("timestamp");
+                Mentor mentor = new Mentor(id, fname, lname, skills, email, password, timestamp);
+                mentors.add(mentor);
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return mentors;
+    }
+    
+    public boolean saveStudent(Student student)
+    {
+        boolean dataInserted = false;
+        try
+        {          
+            String query = "insert into coordinators(fname, lname, department, subject, email, password) values(?,?,?,?,?,?,?,?)";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setString(1, student.getFname());
+            pstmt.setString(2, student.getLname());
+            pstmt.setString(3, student.getDepartment());
+            pstmt.setString(4, student.getDivision());
+            pstmt.setString(5, student.getRollNo());
+            pstmt.setString(6, student.getPhoneNo());
+            pstmt.setString(7, student.getEmail());
+            pstmt.setString(8, student.getPassword());
+            pstmt.executeUpdate();
+            dataInserted = true;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return dataInserted;
+    }
+    
+    public ArrayList<Student> getStudents()
+    {
+        ArrayList<Student> students = new ArrayList<Student>();
+        try
+        {            
+            String query = "select * from students";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery(); 
+            while(rs.next())
+            {
+                int id = rs.getInt("id");
+                String fname = rs.getString("fname");
+                String lname = rs.getString("lname");
+                String department = rs.getString("department");
+                String division = rs.getString("division");
+                String rollNo = rs.getString("rollNo");
+                String phoneNo = rs.getString("phoneNo");
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+                int teamId = rs.getInt("teamId");
+                Timestamp timestamp = rs.getTimestamp("timestamp");
+                Student student = new Student(id, fname, lname, department, division, rollNo, phoneNo, email, password, teamId, timestamp);
+                students.add(student);
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return students;
+    }
+    
+    public ArrayList<Student> getStudentsByName(String search)
+    {
+        ArrayList<Student> students = new ArrayList<Student>();
+        try
+        {            
+            String query = "select * from students where fname like '%" + search + "%' or lname like '%" + search + "%'";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            System.out.println(pstmt);
+            ResultSet rs = pstmt.executeQuery(); 
+            while(rs.next())
+            {
+                int id = rs.getInt("id");
+                String fname = rs.getString("fname");
+                String lname = rs.getString("lname");
+                String department = rs.getString("department");
+                String division = rs.getString("division");
+                String rollNo = rs.getString("rollNo");
+                String phoneNo = rs.getString("phoneNo");
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+                int teamId = rs.getInt("teamId");
+                Timestamp timestamp = rs.getTimestamp("timestamp");
+                Student student = new Student(id, fname, lname, department, division, rollNo, phoneNo, email, password, teamId, timestamp);
+                students.add(student);
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return students;
     }
 }

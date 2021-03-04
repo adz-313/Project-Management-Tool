@@ -11,23 +11,20 @@ public class Project
     private int project_id;
     private String title;
     private String description;
-    private int user_id;
     private Timestamp timestamp;
 
     public Project() {
     }
 
-    public Project(String title, String description, int user_id) {
+    public Project(String title, String description) {
         this.title = title;
         this.description = description;
-        this.user_id = user_id;
     }
 
-    public Project(int project_id, String title, String description, int user_id, Timestamp timestamp) {
+    public Project(int project_id, String title, String description, Timestamp timestamp) {
         this.project_id = project_id;
         this.title = title;
         this.description = description;
-        this.user_id = user_id;
         this.timestamp = timestamp;
     }
 
@@ -53,15 +50,7 @@ public class Project
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
-    }
+    } 
 
     public Timestamp getTimestamp() {
         return timestamp;

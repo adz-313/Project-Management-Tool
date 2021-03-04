@@ -1,5 +1,4 @@
 <%@page import="com.project_management.entities.Coordinator"%>
-<%@page import="com.project_management.entities.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
