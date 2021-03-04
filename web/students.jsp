@@ -78,6 +78,14 @@
                 });
             });
         </script>
+        <script>
+            $(document).ready(function (e) {
+                console.log('yolo');
+                $('#approvals-badge').html(
+            <%= cnt%>
+                );
+            });
+        </script>
     </body>
 </html>
 

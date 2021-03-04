@@ -1,3 +1,5 @@
+<%@page import="com.project_management.helper.ConnectionProvider"%>
+<%@page import="com.project_management.database.DatabaseInterface"%>
 <%@page import="com.project_management.entities.Coordinator"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
@@ -20,6 +22,8 @@
                                 <li><a href="#">Contact</a></li>
             <%
                 Coordinator user = (Coordinator) session.getAttribute("currentUser");
+                DatabaseInterface db = new DatabaseInterface(ConnectionProvider.getConnection());
+                int cnt = db.getApprovalCount();
             %>
             <c:set var="user" value="${user}"/>      
             <c:choose>
@@ -74,7 +78,7 @@
                             </c:when>
                             <c:otherwise >
                             <li class="nav-item">
-                                <a class="nav-link" href="approvals.jsp">Approvals <span class="badge badge-light">2</span></a>                                
+                                <a class="nav-link" href="approvals.jsp">Approvals <span class="badge badge-light" id="approvals-badge"></span></a>                                
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Profile</a>

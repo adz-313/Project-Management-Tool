@@ -32,13 +32,11 @@
                         <i class="fas fa-sync fa-3x fa-spin"></i>
                         <h3 class="mt-2">Loading...</h3>
                     </div>
-                    <div class="row">
+                    <div class="row" style="margin: auto;">
                         <h1 class="mr-auto">Mentors</h1>
                         <form class="form-inline my-2 my-lg-0">
                             <input class="form-control mr-sm-2" type="search" id="search-mentors" placeholder="Search" aria-label="Search">
-                        </form>
-                        <!--<input class="form-control ml-auto" id="search-mentors" type="search" placeholder="Search" aria-label="Search">-->
-                        <!--                        <input type="text" class="ml-auto" >-->
+                        </form>                        
                     </div>
                     <div class="container-fluid mt-3" id="mentors-container">
 
@@ -76,6 +74,14 @@
                         });
                     }
                 });
+            });
+        </script>
+        <script>
+            $(document).ready(function (e) {
+                console.log('yolo');
+                $('#approvals-badge').html(
+            <%= cnt%>
+                );
             });
         </script>
     </body>

@@ -14,13 +14,12 @@
         <%@include file="navbar.jsp" %>
         <div class="wrapper">
             <%@include file="sidebar.jsp" %>
-            <%            
-                if (user == null) {
+            <%                if (user == null) {
                     response.sendRedirect("login_page.jsp");
                 }
             %>
             <div id="content">
-                <div class="container-fluid">
+                <div class="container-fluid" id="approvals-container">
                     <h1>Approvals</h1>
                 </div>
             </div>
@@ -31,6 +30,24 @@
         <script src="Javascript/sidebar.js"></script>      
         <script>
             $('#home').removeClass('active');
-        </script>      
+            $(document).ready(function (e) {
+                console.log('loaded...');
+                $.ajax({
+                    url: 'load_approvals.jsp',
+                    success: function (data, textStatus, jqXHR) {
+                        $('#loader').hide();
+                        $('#approvals-container').html(data);
+                    }
+                });
+            });
+        </script> 
+        <script>
+            $(document).ready(function (e) {
+                console.log('yolo');
+                $('#approvals-badge').html(
+            <%= cnt%>
+                );
+            });
+        </script>
     </body>
 </html>

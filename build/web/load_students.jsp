@@ -6,8 +6,6 @@
 <div class="row">
 <%
         DatabaseInterface db = new DatabaseInterface(ConnectionProvider.getConnection());
-        String search = request.getParameter("search");
-        System.out.println(search);
         ArrayList<Student> student = db.getStudents();
         for (Student s : student) {
 
