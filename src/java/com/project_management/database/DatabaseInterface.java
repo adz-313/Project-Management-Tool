@@ -3,7 +3,6 @@ package com.project_management.database;
 import com.project_management.entities.Coordinator;
 import com.project_management.entities.Mentor;
 import com.project_management.entities.Project;
-import com.project_management.entities.User;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,31 +16,6 @@ public class DatabaseInterface
     }
 
     public DatabaseInterface() {
-    }
-
-    public boolean saveUser(User user)
-    {
-        boolean dataInserted = false;
-        try
-        {          
-            String query = "insert into users(user_name, user_first_name, user_last_name, user_email, user_phone, user_password, user_pic_name, pathname) values(?,?,?,?,?,?,?,?)";
-            PreparedStatement pstmt = con.prepareStatement(query);
-            pstmt.setString(1, user.getUsername());
-            pstmt.setString(2, user.getFirst_name());
-            pstmt.setString(3, user.getLast_name());
-            pstmt.setString(4, user.getEmail());
-            pstmt.setString(5, user.getPhone());
-            pstmt.setString(6, user.getPassword());
-            pstmt.setString(7, user.getFilename());
-            pstmt.setString(8, user.getFilepath());
-            pstmt.executeUpdate();
-            dataInserted = true;
-        }
-        catch(Exception e)
-        {
-            System.out.println(e);
-        }
-        return dataInserted;
     }
     
     public boolean saveProject(Project project)
@@ -62,38 +36,6 @@ public class DatabaseInterface
             System.out.println(e);
         }
         return dataInserted;
-    }
-    
-    public User getUserByEmailAndPassword(String email, String password)
-    {
-        User user = null;
-        try
-        {
-            String query = "select * from users where user_email=? and user_password=?;";
-            PreparedStatement pstmt = con.prepareStatement(query);
-            pstmt.setString(1, email);
-            pstmt.setString(2, password);
-            ResultSet rs = pstmt.executeQuery();            
-            if(rs.next())
-            {
-                user = new User();
-                user.setId(rs.getInt("user_id"));
-                user.setUsername(rs.getString("user_name"));
-                user.setFirst_name(rs.getString("user_first_name"));
-                user.setLast_name(rs.getString("user_last_name"));
-                user.setEmail(rs.getString("user_email"));
-                user.setPhone(rs.getString("user_phone"));
-                user.setPassword(rs.getString("user_password"));
-                user.setFilename(rs.getString("user_pic_name"));
-                user.setFilepath(rs.getString("pathname"));
-                user.setTime(rs.getTimestamp("user_timestamp"));
-            }
-        }
-        catch(Exception e)
-        {
-            System.out.println(e);
-        }
-        return user;
     }
      
     public int getProjectByUserIdAndTitle(int userId, String title)

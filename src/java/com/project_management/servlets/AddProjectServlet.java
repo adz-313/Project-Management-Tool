@@ -7,7 +7,6 @@ package com.project_management.servlets;
 
 import com.project_management.database.DatabaseInterface;
 import com.project_management.entities.Project;
-import com.project_management.entities.User;
 import com.project_management.helper.ConnectionProvider;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -49,22 +48,22 @@ public class AddProjectServlet extends HttpServlet {
             String description = request.getParameter("description");
             
             HttpSession session = request.getSession();
-            User user = (User) session.getAttribute("currentUser");
-            
-            int userId = user.getId();
-            
-            Project project = new Project(title, description, userId);
-            
-            DatabaseInterface db = new DatabaseInterface(ConnectionProvider.getConnection());
-            if(db.saveProject(project))
-            {
-                out.print("Success");  
-                response.sendRedirect("project_overview.jsp?projectId=" + db.getProjectByUserIdAndTitle(userId, title));            
-            }
-            else
-            {
-                out.print("fail");
-            }
+//            User user = (User) session.getAttribute("currentUser");
+//            
+//            int userId = user.getId();
+//            
+//            Project project = new Project(title, description, userId);
+//            
+//            DatabaseInterface db = new DatabaseInterface(ConnectionProvider.getConnection());
+//            if(db.saveProject(project))
+//            {
+//                out.print("Success");  
+//                response.sendRedirect("project_overview.jsp?projectId=" + db.getProjectByUserIdAndTitle(userId, title));            
+//            }
+//            else
+//            {
+//                out.print("fail");
+//            }
             
             out.println("</body>");
             out.println("</html>");

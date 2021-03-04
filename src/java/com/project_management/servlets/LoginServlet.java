@@ -7,7 +7,6 @@ package com.project_management.servlets;
 
 import com.project_management.database.DatabaseInterface;
 import com.project_management.entities.Coordinator;
-import com.project_management.entities.User;
 import com.project_management.helper.ConnectionProvider;
 import java.io.IOException;
 import java.io.PrintWriter;
