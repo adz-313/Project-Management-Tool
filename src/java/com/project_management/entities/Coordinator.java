@@ -20,20 +20,22 @@ public class Coordinator {
     private String email;
     private String password;
     private Timestamp time;
+    private String profile;
 
     public Coordinator() {
     }
 
-    public Coordinator(String fname, String lname, String department, String subject, String email, String password) {
+    public Coordinator(String fname, String lname, String department, String subject, String email, String password, String profile) {
         this.fname = fname;
         this.lname = lname;
         this.department = department;
         this.subject = subject;
         this.email = email;
         this.password = password;
+        this.profile = profile;
     }
 
-    public Coordinator(int id, String fname, String lname, String department, String subject, String email, String password, Timestamp time) {
+    public Coordinator(int id, String fname, String lname, String department, String subject, String email, String password, Timestamp time, String profile) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
@@ -42,6 +44,15 @@ public class Coordinator {
         this.email = email;
         this.password = password;
         this.time = time;
+        this.profile = profile;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
     }
 
     public int getId() {

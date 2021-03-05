@@ -27,16 +27,16 @@
             %>
             <div id="content">
                 <div class="container-fluid">
-                    <!--show mentors here-->
-                    <div class="container text-center" id="loader">
-                        <i class="fas fa-sync fa-3x fa-spin"></i>
-                        <h3 class="mt-2">Loading...</h3>
-                    </div>
+                    <!--show mentors here-->                    
                     <div class="row" style="margin: auto;">
                         <h1 class="mr-auto">Mentors</h1>
                         <form class="form-inline my-2 my-lg-0">
                             <input class="form-control mr-sm-2" type="search" id="search-mentors" placeholder="Search" aria-label="Search">
                         </form>                        
+                    </div>
+                    <div class="container text-center" id="loader">
+                        <i class="fas fa-sync fa-3x fa-spin"></i>
+                        <h3 class="mt-2">Loading...</h3>
                     </div>
                     <div class="container-fluid mt-3" id="mentors-container">
 

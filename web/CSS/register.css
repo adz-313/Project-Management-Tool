@@ -71,10 +71,6 @@
   text-decoration: none;
 }
 
-input[type="file"] {
-  margin-top: 110px;
-}
-
 .profile-pic {
   margin-top: 50px;
   border-radius: 50%;

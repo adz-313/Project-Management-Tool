@@ -81,7 +81,7 @@
                                 <a class="nav-link" href="approvals.jsp">Approvals <span class="badge badge-light" id="approvals-badge"></span></a>                                
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Profile</a>
+                                <a class="nav-link" href="profile.jsp">Profile</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="LogoutServlet">Logout</a>

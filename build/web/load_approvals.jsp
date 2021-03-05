@@ -12,16 +12,14 @@
         for (Team t : teams) {
             Project p = db.getProjectById(t.getProject_id());
             Student s = db.getStudentById(t.getCreated_by());
-            if (p == null) {
-                System.out.println("p is null!!!");
-            }
     %>
     <div class="col-3">
         <div class="card mt-2">
             <div class="card-body text-center">
-                <h4><%= p.getTitle()%></h4>
-                <h5><%= s.getFname() + " " + s.getLname() %></h5>
-                <h6 style="color:#999"><%= s.getRollNo() %></h6>
+                <h3 class="card-title"><%= p.getTitle()%></h3>
+                <h5 class="card-text"><%= s.getFname() + " " + s.getLname() %></h5>
+                <p class="text-muted mb-1"><%= s.getRollNo() %></p>
+                <button class="btn btn-primary"><a href="project_overview.jsp?team_id=<%= t.getId() %>&project_id=<%= p.getProject_id() %>">View</a></button>
             </div>
         </div>
     </div>

@@ -19,8 +19,9 @@
                 }
             %>
             <div id="content">
+                <h1>Approvals</h1>
                 <div class="container-fluid" id="approvals-container">
-                    <h1>Approvals</h1>
+                    
                 </div>
             </div>
         </div>

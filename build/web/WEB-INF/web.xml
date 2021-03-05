@@ -28,6 +28,10 @@
         <servlet-name>CoordinatorRegisterServlet</servlet-name>
         <servlet-class>com.project_management.servlets.CoordinatorRegisterServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateApprovalServlet</servlet-name>
+        <servlet-class>com.project_management.servlets.UpdateApprovalServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>project_overview_jsp</servlet-name>
         <url-pattern>/project-overview</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>CoordinatorRegisterServlet</servlet-name>
         <url-pattern>/CoordinatorRegisterServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateApprovalServlet</servlet-name>
+        <url-pattern>/UpdateApprovalServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

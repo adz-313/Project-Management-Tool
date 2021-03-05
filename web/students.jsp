@@ -26,19 +26,16 @@
                 }
             %>
             <div id="content">
-                <div class="container-fluid">
-                    <!--show mentors here-->
-                    <div class="container text-center" id="loader">
-                        <i class="fas fa-sync fa-3x fa-spin"></i>
-                        <h3 class="mt-2">Loading...</h3>
-                    </div>
+                <div class="container-fluid">                    
                     <div class="row">
                         <h1 class="mr-auto">Students</h1>
                         <form class="form-inline my-2 my-lg-0">
                             <input class="form-control mr-sm-2" type="search" id="search-students" placeholder="Search" aria-label="Search">
                         </form>
-                        <!--<input class="form-control ml-auto" id="search-mentors" type="search" placeholder="Search" aria-label="Search">-->
-                        <!--                        <input type="text" class="ml-auto" >-->
+                    </div>
+                    <div class="container text-center" id="loader">
+                        <i class="fas fa-sync fa-3x fa-spin"></i>
+                        <h3 class="mt-2">Loading...</h3>
                     </div>
                     <div class="container-fluid mt-3" id="students-container">
 

@@ -19,7 +19,7 @@
                     <a href="home.jsp">Home</a>
                 </li>
                 <li id="teams">
-                    <a href="#">Teams</a>
+                    <a href="teams.jsp">Teams</a>
                 </li>
                 <li id="mentors">
                     <a href="mentors.jsp">Mentors</a>

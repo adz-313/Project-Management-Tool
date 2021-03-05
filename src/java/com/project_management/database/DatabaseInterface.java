@@ -43,7 +43,7 @@ public class DatabaseInterface
         int cnt = 0;
         try
         {
-            String query = "select count(*) from teams where status = 'PENDING'";
+            String query = "select count(*) from teams where approvalStatus = 'PENDING'";
             PreparedStatement pstmt = con.prepareStatement(query);
             ResultSet rs = pstmt.executeQuery();
             rs.next();
@@ -58,10 +58,10 @@ public class DatabaseInterface
     
     public ArrayList<Team> getTeamApprovals()
     {
-        ArrayList<Team> approvals = new ArrayList<Team>();
+        ArrayList<Team> approvals = new ArrayList<>();
         try
         {
-            String query = "select * from teams where status = 'PENDING'";
+            String query = "select * from teams where approvalStatus = 'PENDING'";
             PreparedStatement pstmt = con.prepareStatement(query);
             ResultSet rs = pstmt.executeQuery();
             while(rs.next())
@@ -70,9 +70,10 @@ public class DatabaseInterface
                 int created_by = rs.getInt("createdBy");
                 int project_id = rs.getInt("projectId");
                 int mentor_id = rs.getInt("mentorId");
-                String status = rs.getString("status");
+                int approved_by = rs.getInt("approvedBy");
+                String status = rs.getString("approvalStatus");
                 Timestamp timestamp = rs.getTimestamp("timestamp");
-                Team team = new Team(id, created_by, project_id, mentor_id, status, timestamp);
+                Team team = new Team(id, created_by, project_id, mentor_id, approved_by, status, timestamp);
                 approvals.add(team);
             }
         }
@@ -82,27 +83,112 @@ public class DatabaseInterface
         }
         return approvals;
     }
-     
-    public int getProjectByUserIdAndTitle(int userId, String title)
+    
+    public ArrayList<Team> getTeams()
     {
-        int projectId = -1;
+        ArrayList<Team> approvals = new ArrayList<>();
         try
         {
-            String query = "select project_id from project where title=? and user_id=?;";
+            String query = "select * from teams where approvalStatus = 'APPROVED'";
             PreparedStatement pstmt = con.prepareStatement(query);
-            pstmt.setString(1, title);
-            pstmt.setInt(2, userId);
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next())
+            {
+                int id = rs.getInt("id");
+                int created_by = rs.getInt("createdBy");
+                int project_id = rs.getInt("projectId");
+                int mentor_id = rs.getInt("mentorId");
+                int approved_by = rs.getInt("approvedBy");
+                String status = rs.getString("approvalStatus");
+                Timestamp timestamp = rs.getTimestamp("timestamp");
+                Team team = new Team(id, created_by, project_id, mentor_id, approved_by, status, timestamp);
+                approvals.add(team);
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return approvals;
+    }
+    
+    public ArrayList<Team> getTeamsByCoordinatorId(int coordinatorId)
+    {
+        ArrayList<Team> approvals = new ArrayList<>();
+        try
+        {
+            String query = "select * from teams where approvalStatus = 'APPROVED' and approvedBy=?;";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, coordinatorId);
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next())
+            {
+                int id = rs.getInt("id");
+                int created_by = rs.getInt("createdBy");
+                int project_id = rs.getInt("projectId");
+                int mentor_id = rs.getInt("mentorId");
+                int approved_by = rs.getInt("approvedBy");
+                String status = rs.getString("approvalStatus");
+                Timestamp timestamp = rs.getTimestamp("timestamp");
+                Team team = new Team(id, created_by, project_id, mentor_id, approved_by, status, timestamp);
+                approvals.add(team);
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return approvals;
+    }
+    
+    public boolean updateApprovalStatus(String status, int teamId, int coordinatorId)
+    {
+        boolean f = false;
+        try
+        {
+            String query = "update teams set approvalStatus=? , approvedBy=? where id=?;";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setString(1, status);
+            pstmt.setInt(2, coordinatorId);
+            pstmt.setInt(3, teamId);
+            System.out.println(pstmt);
+            pstmt.executeUpdate();
+            f = true;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return f;
+    }
+    
+    public Team getTeamById(int teamId)
+    {
+        Team team = null;
+        try
+        {
+            String query = "select * from teams where id=?;";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, teamId);
+            System.out.println(pstmt.toString());
             ResultSet rs = pstmt.executeQuery();            
             if(rs.next())
             {
-                projectId = rs.getInt("project_id");
+                int id = rs.getInt("id");
+                int created_by = rs.getInt("createdBy");
+                int project_id = rs.getInt("projectId");
+                int mentor_id = rs.getInt("mentorId");
+                int approved_by = rs.getInt("approvedBy");
+                String status = rs.getString("approvalStatus");
+                Timestamp timestamp = rs.getTimestamp("timestamp");
+                team = new Team(id, created_by, project_id, mentor_id, approved_by, status, timestamp);               
             }
         }
         catch(Exception e)
         {
             System.out.println(e);
         }
-        return projectId;
+        return team;
     }
     
     public Project getProjectById(int projectId)
@@ -128,7 +214,6 @@ public class DatabaseInterface
         {
             System.out.println(e);
         }
-        System.out.println(project.getTitle());
         return project;
     }
     
@@ -137,7 +222,7 @@ public class DatabaseInterface
         boolean dataInserted = false;
         try
         {          
-            String query = "insert into coordinators(fname, lname, department, subject, email, password) values(?,?,?,?,?,?)";
+            String query = "insert into coordinators(fname, lname, department, subject, email, password, profile) values(?,?,?,?,?,?,?)";
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.setString(1, coordinator.getFname());
             pstmt.setString(2, coordinator.getLname());
@@ -145,6 +230,7 @@ public class DatabaseInterface
             pstmt.setString(4, coordinator.getSubject());
             pstmt.setString(5, coordinator.getEmail());
             pstmt.setString(6, coordinator.getPassword());
+            pstmt.setString(7, coordinator.getProfile());
             pstmt.executeUpdate();
             dataInserted = true;
         }
@@ -175,6 +261,7 @@ public class DatabaseInterface
                 coordinator.setSubject(rs.getString("subject"));
                 coordinator.setEmail(rs.getString("email"));
                 coordinator.setPassword(rs.getString("password"));
+                coordinator.setProfile(rs.getString("profile"));
                 coordinator.setTime(rs.getTimestamp("timestamp"));
             }
         }
@@ -202,7 +289,8 @@ public class DatabaseInterface
                 String email = rs.getString("email");
                 String password = rs.getString("password");
                 Timestamp timestamp = rs.getTimestamp("timestamp");
-                Mentor mentor = new Mentor(id, fname, lname, skills, email, password, timestamp);
+                String profile = rs.getString("profile");
+                Mentor mentor = new Mentor(id, fname, lname, skills, email, password, timestamp, profile);
                 mentors.add(mentor);
             }
         }
@@ -230,7 +318,8 @@ public class DatabaseInterface
                 String email = rs.getString("email");
                 String password = rs.getString("password");
                 Timestamp timestamp = rs.getTimestamp("timestamp");
-                Mentor mentor = new Mentor(id, fname, lname, skills, email, password, timestamp);
+                String profile = rs.getString("profile");
+                Mentor mentor = new Mentor(id, fname, lname, skills, email, password, timestamp, profile);
                 mentors.add(mentor);
             }
         }
@@ -246,7 +335,7 @@ public class DatabaseInterface
         boolean dataInserted = false;
         try
         {          
-            String query = "insert into coordinators(fname, lname, department, subject, email, password) values(?,?,?,?,?,?,?,?)";
+            String query = "insert into coordinators(fname, lname, department, subject, email, password, profile) values(?,?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.setString(1, student.getFname());
             pstmt.setString(2, student.getLname());
@@ -256,6 +345,7 @@ public class DatabaseInterface
             pstmt.setString(6, student.getPhoneNo());
             pstmt.setString(7, student.getEmail());
             pstmt.setString(8, student.getPassword());
+            pstmt.setString(9, student.getProfile());
             pstmt.executeUpdate();
             dataInserted = true;
         }
@@ -287,7 +377,8 @@ public class DatabaseInterface
                 String password = rs.getString("password");
                 int teamId = rs.getInt("teamId");
                 Timestamp timestamp = rs.getTimestamp("timestamp");
-                Student student = new Student(id, fname, lname, department, division, rollNo, phoneNo, email, password, teamId, timestamp);
+                String profile = rs.getString("profile");
+                Student student = new Student(id, fname, lname, department, division, rollNo, phoneNo, email, password, teamId, timestamp, profile);
                 students.add(student);
             }
         }
@@ -320,7 +411,8 @@ public class DatabaseInterface
                 String password = rs.getString("password");
                 int teamId = rs.getInt("teamId");
                 Timestamp timestamp = rs.getTimestamp("timestamp");
-                Student student = new Student(id, fname, lname, department, division, rollNo, phoneNo, email, password, teamId, timestamp);
+                String profile = rs.getString("profile");
+                Student student = new Student(id, fname, lname, department, division, rollNo, phoneNo, email, password, teamId, timestamp, profile);
                 students.add(student);
             }
         }
@@ -353,7 +445,8 @@ public class DatabaseInterface
                 String password = rs.getString("password");
                 int teamId = rs.getInt("teamId");
                 Timestamp timestamp = rs.getTimestamp("timestamp");
-                student = new Student(id, fname, lname, department, division, rollNo, phoneNo, email, password, teamId, timestamp);
+                String profile = rs.getString("profile");
+                student = new Student(id, fname, lname, department, division, rollNo, phoneNo, email, password, teamId, timestamp, profile);
             }
         }
         catch(Exception e)
@@ -361,5 +454,40 @@ public class DatabaseInterface
             e.printStackTrace();
         }
         return student;
+    }
+    
+    public ArrayList<Student> getStudentsByTeamId(int team_id)
+    {
+        ArrayList<Student> students = new ArrayList<Student>();
+        try
+        {            
+            String query = "select * from students where teamId=?;";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, team_id);
+            System.out.println(pstmt);
+            ResultSet rs = pstmt.executeQuery(); 
+            while(rs.next())
+            {
+                int id = rs.getInt("id");
+                String fname = rs.getString("fname");
+                String lname = rs.getString("lname");
+                String department = rs.getString("department");
+                String division = rs.getString("division");
+                String rollNo = rs.getString("rollNo");
+                String phoneNo = rs.getString("phoneNo");
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+                int teamId = rs.getInt("teamId");
+                Timestamp timestamp = rs.getTimestamp("timestamp");
+                String profile = rs.getString("profile");
+                Student student = new Student(id, fname, lname, department, division, rollNo, phoneNo, email, password, teamId, timestamp, profile);
+                students.add(student);
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return students;
     }
 }

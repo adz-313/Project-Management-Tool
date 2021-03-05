@@ -17,6 +17,7 @@ public class Team
     private int created_by;
     private int project_id;
     private int mentor_id;
+    private int approved_by;
     private String status;
     private Timestamp timestamp; 
 
@@ -28,11 +29,12 @@ public class Team
         this.project_id = project_id;
     }
 
-    public Team(int id, int created_by, int project_id, int mentor_id, String status, Timestamp timestamp) {
+    public Team(int id, int created_by, int project_id, int mentor_id, int approved_by, String status, Timestamp timestamp) {
         this.id = id;
         this.created_by = created_by;
         this.project_id = project_id;
         this.mentor_id = mentor_id;
+        this.approved_by = approved_by;
         this.status = status;
         this.timestamp = timestamp;
     }
@@ -83,6 +85,14 @@ public class Team
 
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public int getApproved_by() {
+        return approved_by;
+    }
+
+    public void setApproved_by(int approved_by) {
+        this.approved_by = approved_by;
     }
     
     

@@ -19,19 +19,21 @@ public class Mentor {
     private String email;
     private String password;
     private Timestamp timestamp;
+    private String profile;
 
     public Mentor() {
     }
 
-    public Mentor(String fname, String lname, String skills, String email, String password) {
+    public Mentor(String fname, String lname, String skills, String email, String password, String profile) {
         this.fname = fname;
         this.lname = lname;
         this.skills = skills;
         this.email = email;
         this.password = password;
+        this.profile = profile;
     }
 
-    public Mentor(int id, String fname, String lname, String skills, String email, String password, Timestamp timestamp) {
+    public Mentor(int id, String fname, String lname, String skills, String email, String password, Timestamp timestamp, String profile) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
@@ -39,6 +41,7 @@ public class Mentor {
         this.email = email;
         this.password = password;
         this.timestamp = timestamp;
+        this.profile = profile;
     }
 
     public int getId() {
@@ -95,6 +98,14 @@ public class Mentor {
 
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
     }
     
     

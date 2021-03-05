@@ -5,20 +5,20 @@
             <url>src/java/com/project_management/entities/Coordinator.java</url>
             <bookmark id="1">
                 <name/>
-                <line>108</line>
+                <line>119</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Admin/Desktop/TE/Practical/WTL/ProjectManagementv1/web/load_mentors.jsp</file>
             <file>file:/C:/Users/Admin/Desktop/TE/Practical/WTL/ProjectManagementv1/web/approvals.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/TE/Practical/WTL/ProjectManagementv1/web/students.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/TE/Practical/WTL/ProjectManagementv1/web/home.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/TE/Practical/WTL/ProjectManagementv1/src/java/com/project_management/servlets/UpdateApprovalServlet.java</file>
+            <file>file:/C:/Users/Admin/Desktop/TE/Practical/WTL/ProjectManagementv1/web/profile.jsp</file>
             <file>file:/C:/Users/Admin/Desktop/TE/Practical/WTL/ProjectManagementv1/src/java/com/project_management/database/DatabaseInterface.java</file>
+            <file>file:/C:/Users/Admin/Desktop/TE/Practical/WTL/ProjectManagementv1/web/project_overview.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/TE/Practical/WTL/ProjectManagementv1/web/WEB-INF/web.xml</file>
             <file>file:/C:/Users/Admin/Desktop/TE/Practical/WTL/ProjectManagementv1/web/load_approvals.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/TE/Practical/WTL/ProjectManagementv1/web/mentors.jsp</file>
         </group>
     </open-files>
 </project-private>

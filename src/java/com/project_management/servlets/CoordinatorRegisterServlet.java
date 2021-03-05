@@ -8,6 +8,8 @@ package com.project_management.servlets;
 import com.project_management.database.DatabaseInterface;
 import com.project_management.entities.Coordinator;
 import com.project_management.helper.ConnectionProvider;
+import com.project_management.helper.Helper;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,6 +17,7 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -33,7 +36,16 @@ public class CoordinatorRegisterServlet extends HttpServlet {
         String subject = request.getParameter("subject");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        Coordinator coordinator = new Coordinator(fname, lname, department, subject, email, password);
+        Part part = request.getPart("profile_pic");
+        String imageName = part.getSubmittedFileName();
+        Coordinator coordinator = new Coordinator(fname, lname, department, subject, email, password, imageName);
+        
+        String path = request.getRealPath("/")+"resources"+File.separator+imageName;
+        Helper.deleteFile(path);
+        if(Helper.saveFile(part.getInputStream(), path))
+        {
+            System.out.println("yolo");
+        }
 
         DatabaseInterface db = new DatabaseInterface(ConnectionProvider.getConnection());
         if(db.saveCoordinator(coordinator))

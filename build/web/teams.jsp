@@ -19,8 +19,8 @@
                 }
             %>
             <div id="content">
-                <h1>Approvals</h1>
-                <div class="container-fluid" id="approvals-container">
+                <h1>Teams</h1>
+                <div class="container-fluid" id="teams-container">
                     
                 </div>
             </div>
@@ -31,20 +31,20 @@
         <script src="Javascript/sidebar.js"></script>      
         <script>
             $('#home').removeClass('active');
+            $('#teams').addClass('active');
             $(document).ready(function (e) {
                 console.log('loaded...');
                 $.ajax({
-                    url: 'load_approvals.jsp',
+                    url: 'load_teams.jsp',
                     success: function (data, textStatus, jqXHR) {
                         $('#loader').hide();
-                        $('#approvals-container').html(data);
+                        $('#teams-container').html(data);
                     }
                 });
             });
         </script> 
         <script>
             $(document).ready(function (e) {
-                console.log('yolo');
                 $('#approvals-badge').html(
             <%= cnt%>
                 );

@@ -24,11 +24,12 @@ public class Student
     private String password;
     private int teamId;
     private Timestamp timestamp;
+    private String profile;
 
     public Student() {
     }
 
-    public Student(String fname, String lname, String department, String division, String rollNo, String phoneNo, String email, String password) {
+    public Student(String fname, String lname, String department, String division, String rollNo, String phoneNo, String email, String password, String profile) {
         this.fname = fname;
         this.lname = lname;
         this.department = department;
@@ -37,9 +38,10 @@ public class Student
         this.phoneNo = phoneNo;
         this.email = email;
         this.password = password;
+        this.profile = profile;
     }
 
-    public Student(int id, String fname, String lname, String department, String division, String rollNo, String phoneNo, String email, String password, int teamId, Timestamp timestamp) {
+    public Student(int id, String fname, String lname, String department, String division, String rollNo, String phoneNo, String email, String password, int teamId, Timestamp timestamp, String profile) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
@@ -51,6 +53,15 @@ public class Student
         this.password = password;
         this.teamId = teamId;
         this.timestamp = timestamp;
+        this.profile = profile;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
     }
 
     public int getId() {

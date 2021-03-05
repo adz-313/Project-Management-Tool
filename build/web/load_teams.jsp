@@ -8,7 +8,7 @@
 <div class="row">
     <%
         DatabaseInterface db = new DatabaseInterface(ConnectionProvider.getConnection());
-        ArrayList<Team> teams = db.getTeamApprovals();
+        ArrayList<Team> teams = db.getTeams();
         for (Team t : teams) {
             Project p = db.getProjectById(t.getProject_id());
             Student s = db.getStudentById(t.getCreated_by());
