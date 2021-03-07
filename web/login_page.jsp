@@ -1,33 +1,73 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page errorPage="error_page.jsp"%>
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Login</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" type="text/css" href="CSS/basic_setup.css" />
-        <link rel="stylesheet" type="text/css" href="CSS/button_action.css" />
-        <link rel="stylesheet" type="text/css" href="CSS/login_page.css" />
-    </head>
-    <body>
-        <div class="register-page" >
-            <div class="sign-up">                
-                <img class="sign-up-img" src="pm2.png" alt="sign-up-img">        
-                <h5 class="sign-up-text">Manage your projects now</h5>        
-            </div>
-            <div class="form">
-                <h5 class="sign-up-text">Login</h5>
-                <form id="login-form" class="register-form" action="LoginServlet" method="post" > 
-                    <input name="email" class="input" type="email" placeholder="Email"/>
-                    <input name="password" class="input" type="password" placeholder="Password"/>
-                    <button class="btn" id="btn-submit" type="submit">Login</button>
-                    <p class="message">New here? <a href="register_page.html">Sign Up</a></p>
-                </form>
-            </div>
-        </div>        
-    </body>
+<head>
+
+    <title>Login Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css" >
+    <link rel="stylesheet" href="CSS/login_page.css"> 
+
+    <style>
+
+.container-login100{
+   width:100%;
+   min-height:100vh;
+   display:flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+   padding:15px;
+   background-image:url(Images/image_1.jpeg);
+   background-position:center;
+   background-size: cover;
+   background-repeat: no-repeat;
+   position: relative;
+   z-index:1;
+ }
+
+ .login100-form{
+   width:100%;
+   
+  }
+
+    </style>
+</head>
+<body> 
+    
+    <div class="container-login100">
+        
+        <div class="wrap-login100 p-t-50 p-b-90 p-l-50 p-r-50">
+            
+            <form class="login100-form flex-sb flex-w" action="LoginServlet" method="post">
+                
+                <span class="login100-form-title">
+                    <i class="fas fa-user"></i>
+                    
+                </span>
+
+                <div class="wrap-input100 m-b-16">
+                    <input class="input100" name="email" type="email" placeholder="EMAIL-ID">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 m-b-16">
+                    <input class="input100" name="password" type="password" placeholder="PASSWORD">
+                    <span class="focus-input100"></span>
+                </div>
+                                
+                <div class="container-login100-form-btn m-t-17">
+                    <div class="w-full beforeNone text-center">
+                        <input id="btn-submit" type="submit" class="nv-login-submit login100-form-btn" value="Sign In">
+                    </div>
+                </div>
+
+                <div class="container-login100-form-btn m-t-17">
+                    <p>Don't have an account? &nbsp;</p><a href="register_page.html">&nbsp; SIGN UP</a>
+                </div>
+            </form>
+        </div>
+    </div> 
+</body>
 </html>
 

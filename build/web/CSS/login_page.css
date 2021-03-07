@@ -1,72 +1,190 @@
-/*-------------------------------
-            Form
---------------------------------*/
-
-.register-page {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../Images/login-bg.jpg);
-  background-size: cover;
+.bg-primary {
+  background-color: #0e1330 !important;
 }
 
-.sign-up {
-  border-radius: 3px;
+.btn-primary {
+  background-color: #3f51b5 !important;
+  border-color: #3f51b5;
+}
+
+.nav-pills .nav-link.active {
+  background-color: #3f51b5;
+}
+
+.nav-link {
+  color: #fff;
+}
+
+.nav-column {
+  background-color: #0e1330;
+}
+
+.content-main {
+  height: 92vh;
+}
+
+.dropdown-item-color {
   background-color: #fff;
-  max-width: 350px;
-  padding: 5rem;
-  text-align: center;
-  max-height: 100vh;
-  display: none;
 }
 
-.sign-up-img {
-  width: 30rem;
-  padding-right: 3rem;
+.dropdown-item.active,
+.dropdown-item-color:active,
+.dropdown-item-color:hover {
+  background-color: #3f51b5 !important;
+  color: #fff;
 }
 
-.sign-up-text {
-  margin: 0 auto;
-  font-size: 2.5rem;
-  font-weight: 300;
-  color: #2b2a2a  ;
-  text-transform: uppercase;
-  margin-bottom: 2rem;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-.form {
-  border-radius: 3px;
-  background: #FFFFFF;
-  max-width: 350px;
-  padding: 5rem 0;
-  text-align: center;
-  max-height: 100vh;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+body,
+html {
+  height: 100%;
+  font-family: "Poppins", sans-serif;
 }
-
-.input {
-  font-family: "Lato", sans-serif;
-  outline: 0;
-  background: #ffffff;
-  width: 70%;
-  border: 0;
-  margin: 0 0 15px;
-  padding: 10px;
+a {
   font-size: 14px;
-  border-bottom: #c0c0c0 solid 1px;
-}
-
-.input:focus {
-  border-bottom: #000 solid 1px;
-}
-
-.form .message {
-  margin: 15px 0 0;
-  color: #b3b3b3;
-  font-size: 12px;
-}
-.form .message a {
-  color: #2998ff;
+  line-height: 1.7;
+  color: #fff;
   text-decoration: none;
+  margin: 0;
+  transition: all 0.4s;
+}
+a:focus {
+  outline: none;
+}
+
+input,
+select {
+  outline: none;
+  border: none;
+}
+
+input,
+select::-webkit-input-placeholder {
+  color: #8f8fa1;
+}
+
+.container-login100::before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.wrap-login100 {
+  width: 500px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  position: relative;
+}
+
+.login100-form-title {
+  font-size: 25px;
+  color: #403866;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+  display: block;
+  margin-bottom: 40px;
+}
+
+.login100-form-title i {
+  font-size: 50px;
+  color: #fff;
+  border: 1.5px solid #00b665;
+  width: 100px;
+  border-radius: 100%;
+  height: 100px;
+  line-height: 90px;
+  transition: 0.5s ease-in-out;
+}
+
+.login100-form-title i:hover {
+  background-color: #fff;
+  color: #00b665;
+  border-color: #fff;
+}
+
+.wrap-input100 {
+  width: 100%;
+  position: relative;
+  background-color: #e6e6e6;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+
+.input100 {
+  width: 100%;
+  padding: 0px 20px 0px;
+  color: #403866;
+  line-height: 1.2;
+  font-size: 16px;
+  display: inline-block;
+  background-color: #f8f8f9;
+  height: 52px;
+  border-radius: 6px;
+}
+
+.container-login100-form-btn {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.login100-form-btn {
+  font-size: 16px;
+  color: #fff;
+  line-height: 1.2;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  width: 100%;
+  height: 52px;
+  cursor: pointer;
+  background-color: #00b665;
+  border-radius: 6px;
+  transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+}
+
+.login100-form-btn:hover {
+  background-color: #00b665;
+}
+
+.p-t-50 {
+  padding-top: 50px;
+}
+.p-b-90 {
+  padding-bottom: 90px;
+}
+.p-l-50 {
+  padding-left: 50px;
+}
+.p-r-50 {
+  padding-right: 50px;
+}
+.m-t-17 {
+  margin-top: 17px;
+}
+.m-b-16 {
+  margin-bottom: 16px;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.m-auto {
+  margin: auto;
 }
