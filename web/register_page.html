@@ -260,7 +260,7 @@
 
                 </form>
 
-                <form name="coordinator" class="input-group" id="coordinator" action="CoordinatorRegisterServlet" method="post" onsubmit="return validateForm()">
+                <form name="coordinator" class="input-group" id="coordinator" action="CoordinatorRegisterServlet" method="post">
                     <div class="name">
                         <input name="profile_pic" class="input100" type="file" />
                     </div>                    
@@ -345,39 +345,39 @@
             </div>
         </div>
         <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script src="register.js"></script>
+        <script src="Javascript/register.js"></script>
         <script>
-                    var x = document.getElementById("student");
-                    var y = document.getElementById("mentor");
-                    var z = document.getElementById("coordinator");
-                    // var u=document.getElementById("butn").style.color="#00b655";
+                        var x = document.getElementById("student");
+                        var y = document.getElementById("mentor");
+                        var z = document.getElementById("coordinator");
+                        // var u=document.getElementById("butn").style.color="#00b655";
 
-                    function fun1() {
-                        x.style.left = "0px";
-                        y.style.left = "700px";
-                        z.style.left = "700px";
-                        document.getElementById("b1").style.backgroundColor = "#00b665";
-                        document.getElementById("b2").style.backgroundColor = "white";
-                        document.getElementById("b3").style.backgroundColor = "white";
+                        function fun1() {
+                            x.style.left = "0px";
+                            y.style.left = "700px";
+                            z.style.left = "700px";
+                            document.getElementById("b1").style.backgroundColor = "#00b665";
+                            document.getElementById("b2").style.backgroundColor = "white";
+                            document.getElementById("b3").style.backgroundColor = "white";
 
-                    }
+                        }
 
-                    function fun2() {
-                        x.style.left = "700px";
-                        y.style.left = "0px";
-                        z.style.left = "700px";
-                        document.getElementById("b2").style.backgroundColor = "#00b665";
-                        document.getElementById("b1").style.backgroundColor = "white";
-                        document.getElementById("b3").style.backgroundColor = "white";
-                    }
-                    function fun3() {
-                        x.style.left = "700px"
-                        z.style.left = "0px"
-                        y.style.left = "700px"
-                        document.getElementById("b3").style.backgroundColor = "#00b665";
-                        document.getElementById("b2").style.backgroundColor = "white";
-                        document.getElementById("b1").style.backgroundColor = "white";
-                    }
+                        function fun2() {
+                            x.style.left = "700px";
+                            y.style.left = "0px";
+                            z.style.left = "700px";
+                            document.getElementById("b2").style.backgroundColor = "#00b665";
+                            document.getElementById("b1").style.backgroundColor = "white";
+                            document.getElementById("b3").style.backgroundColor = "white";
+                        }
+                        function fun3() {
+                            x.style.left = "700px"
+                            z.style.left = "0px"
+                            y.style.left = "700px"
+                            document.getElementById("b3").style.backgroundColor = "#00b665";
+                            document.getElementById("b2").style.backgroundColor = "white";
+                            document.getElementById("b1").style.backgroundColor = "white";
+                        }
         </script>
 
 
@@ -386,27 +386,35 @@
                 console.log('loaded...');
                 $('#coordinator').on('submit', function (event) {
                     event.preventDefault();
-                    let form = new FormData(this);
-                    $('#submit-btn-coordinator').hide();
-                    $('#loader').show();
-                    $.ajax({
-                        url: "CoordinatorRegisterServlet",
-                        type: 'POST',
-                        data: form,
-                        success: function (data, textstatus, adfa) {
-                            console.log(data);
-                            $('#submit-btn-coordinator').show();
-                            $('#loader').hide();
-                        },
-                        error: function (adfa, textstatus, errorThrown) {
-                            console.log(adfa);
-                            failed = true;
-                            $('#submit-btn-coordinator').show();
-                            $('#loader').hide();
-                        },
-                        processData: false,
-                        contentType: false
-                    });
+                    let f = validateForm();
+                    if (f === true)
+                    {
+                        console.log('in if');
+                        let form = new FormData(this);
+                        $('#submit-btn-coordinator').hide();
+                        $('#loader').show();
+                        $.ajax({
+                            url: "CoordinatorRegisterServlet",
+                            type: 'POST',
+                            data: form,
+                            success: function (data, textstatus, adfa) {
+                                console.log(data);
+                                $('#submit-btn-coordinator').show();
+                                $('#loader').hide();
+                            },
+                            error: function (adfa, textstatus, errorThrown) {
+                                console.log(adfa);
+                                $('#submit-btn-coordinator').show();
+                                $('#loader').hide();
+                            },
+                            processData: false,
+                            contentType: false
+                        });
+                    }
+                    else
+                    {
+                        container.classList.remove('show');
+                    }
                 });
             });
             const container = document.getElementById('modal-container');

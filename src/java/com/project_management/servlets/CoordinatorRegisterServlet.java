@@ -37,23 +37,23 @@ public class CoordinatorRegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         Part part = request.getPart("profile_pic");
+        System.out.println(part);
         String imageName = part.getSubmittedFileName();
+        if (imageName.equals("")) {
+            imageName = "user.png";
+        }
         Coordinator coordinator = new Coordinator(fname, lname, department, subject, email, password, imageName);
-        
-        String path = request.getRealPath("/")+"resources"+File.separator+imageName;
+
+        String path = request.getRealPath("/") + "resources" + File.separator + imageName;
         Helper.deleteFile(path);
-        if(Helper.saveFile(part.getInputStream(), path))
-        {
-            System.out.println("yolo");
+        if (Helper.saveFile(part.getInputStream(), path)) {
+            System.out.println("image saved successfully");
         }
 
         DatabaseInterface db = new DatabaseInterface(ConnectionProvider.getConnection());
-        if(db.saveCoordinator(coordinator))
-        {
+        if (db.saveCoordinator(coordinator)) {
             out.print("<h1>Success</h1>");
-        }
-        else
-        {
+        } else {
             out.print("<h1>Fail</h1>");
         }
     }

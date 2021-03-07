@@ -1,41 +1,34 @@
 function validateForm()
 {
     if (document.coordinator.fname.value === "") {
-        alert("Field empty!");
-        document.myForm.email.focus();
+        alert("First name cannot be empty!");
+        document.coordinator.fname.focus();
         return false;
     }
     if (document.coordinator.lname.value === "") {
-        alert("Field empty!");
-        document.myForm.email2.focus();
+        alert("Last name cannot be empty!");
+        document.coordinator.lname.focus();
         return false;
     }
-    if (document.myForm.zip.value == "" || isNaN(document.myForm.zip.value)) {
-        alert("Wrong zip format");
-        document.myForm.zip.focus();
+    if (document.coordinator.department.value === "") {
+        alert("Department cannot be empty!");
+        document.coordinator.department.focus();
         return false;
     }
-    if (document.myForm.department.value === "") {
-        alert("Field empty!");
-        document.myForm.password.focus();
+    if (document.coordinator.subject.value === "") {
+        alert("Subject cannot be empty!");
+        document.coordinator.subject.focus();
+        return false;
+    }
+    if (document.coordinator.email.value === "") {
+        alert("Email cannot be empty!");
+        document.coordinator.email.focus();
         return false;
     }
     if (document.coordinator.password.value === "")
     {
-        alert("Field empty!");
-        document.myForm.password.focus();
-        return false;
-    }
-    if (document.myForm.password2.value == "")
-    {
-        alert("Field empty!");
-        document.myForm.password2.focus();
-        return false;
-    }
-    if (document.myForm.password.value !== document.myForm.password2.value)
-    {
-        alert("Passwords don't match");
-        document.myForm.password2.focus();
+        alert("Password cannot be empty!");
+        document.coordinator.password.focus();
         return false;
     }
     return(true);
