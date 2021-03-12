@@ -20,6 +20,7 @@ public class Team
     private int approved_by;
     private String status;
     private Timestamp timestamp; 
+    private String remark;
 
     public Team() {
     }
@@ -29,7 +30,7 @@ public class Team
         this.project_id = project_id;
     }
 
-    public Team(int id, int created_by, int project_id, int mentor_id, int approved_by, String status, Timestamp timestamp) {
+    public Team(int id, int created_by, int project_id, int mentor_id, int approved_by, String status, Timestamp timestamp, String remark) {
         this.id = id;
         this.created_by = created_by;
         this.project_id = project_id;
@@ -37,6 +38,7 @@ public class Team
         this.approved_by = approved_by;
         this.status = status;
         this.timestamp = timestamp;
+        this.remark = remark;
     }
 
     public int getId() {
@@ -93,6 +95,14 @@ public class Team
 
     public void setApproved_by(int approved_by) {
         this.approved_by = approved_by;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
     
     

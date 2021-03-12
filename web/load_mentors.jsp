@@ -17,6 +17,7 @@
             <h4><%= m.getFname() + " " +  m.getLname() %></h4>
             <h5><%= m.getEmail()%></h5>
             <h6 style="color:#999"><%= m.getSkills()%></h6>
+            <a href="#" class="btn btn-primary">Profile</a>
         </div>
     </div>
 </div>

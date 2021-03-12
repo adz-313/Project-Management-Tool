@@ -21,7 +21,7 @@
             <div id="content">
                 <h1>Teams</h1>
                 <div class="container-fluid" id="teams-container">
-                    
+
                 </div>
             </div>
         </div>
@@ -44,11 +44,15 @@
             });
         </script> 
         <script>
-            $(document).ready(function (e) {
+            if (<%= cnt%> === 0)
+            {
+                $('#approvals-badge').hide();
+            } else
+            {
                 $('#approvals-badge').html(
             <%= cnt%>
                 );
-            });
+            }
         </script>
     </body>
 </html>

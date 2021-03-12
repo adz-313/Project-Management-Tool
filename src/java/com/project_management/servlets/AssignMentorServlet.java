@@ -6,21 +6,21 @@
 package com.project_management.servlets;
 
 import com.project_management.database.DatabaseInterface;
-import com.project_management.entities.Coordinator;
+import com.project_management.entities.Team;
 import com.project_management.helper.ConnectionProvider;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.ConnectException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class UpdateApprovalServlet extends HttpServlet {
+public class AssignMentorServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,42 +39,19 @@ public class UpdateApprovalServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AcceptApprovalServlet</title>");
+            out.println("<title>Servlet AssignMentorServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            HttpSession session = request.getSession();
-            Coordinator c = (Coordinator) session.getAttribute("currentUser");
-//            out.println("<h1>Servlet AcceptApprovalServlet at " + c.getFname() + " " + request.getParameter("team_id") +"</h1>");
-
-            int approvedBy = c.getId();
-            int teamId = Integer.parseInt(request.getParameter("team_id"));
-            String temp = null;
-            int status = -1;            
-            try {
-                temp = request.getParameter("btnAccept");
-                status = Integer.parseInt(temp);
-            } catch (Exception e) {
-                temp = request.getParameter("btnReject");
-                status = Integer.parseInt(temp);
-            }
-            String remark = "";
-            remark = request.getParameter("remark");
+            int mentorId = Integer.parseInt(request.getParameter("id"));
+            int teamId = Integer.parseInt(request.getParameter("teamId"));
+            
             DatabaseInterface db = new DatabaseInterface(ConnectionProvider.getConnection());
-            if (status == 1) {
-                if (db.updateApprovalStatus("APPROVED", teamId, approvedBy, remark)) {
-                    response.sendRedirect("approvals.jsp");
-                } else {
-                    out.println("<h1>Fail</h1>");
-                }
+            Team t = db.getTeamById(teamId);
+            if(db.assignMentorToTeam(mentorId, teamId))
+            {
+                response.sendRedirect("project_overview.jsp?team_id=" + teamId + "&project_id=" + t.getProject_id()); 
             }
-            else {
-                if (db.updateApprovalStatus("REJECTED", teamId, approvedBy, remark)) {
-                    response.sendRedirect("approvals.jsp");
-                } else {
-                    out.println("<h1>Fail</h1>");
-                }
-            }
-            out.println("<h1>" + status + " " + remark + "</h1>");
+            
             out.println("</body>");
             out.println("</html>");
         }

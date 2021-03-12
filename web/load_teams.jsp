@@ -19,7 +19,7 @@
                 <h3 class="card-title"><%= p.getTitle()%></h3>
                 <h5 class="card-text"><%= s.getFname() + " " + s.getLname() %></h5>
                 <p class="text-muted mb-1"><%= s.getRollNo() %></p>
-                <button class="btn btn-primary"><a href="project_overview.jsp?team_id=<%= t.getId() %>&project_id=<%= p.getProject_id() %>">View</a></button>
+                <a class="btn btn-primary" href="project_overview.jsp?team_id=<%= t.getId() %>&project_id=<%= p.getProject_id() %>">View</a>
             </div>
         </div>
     </div>

@@ -23,6 +23,7 @@
             <%                if (user == null) {
                     response.sendRedirect("login_page.jsp");
                 }
+                String teamId = request.getParameter("id");
             %>
             <div id="content">
                 <div class="container-fluid">
@@ -46,13 +47,13 @@
         <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script src="Javascript/sidebar.js"></script> 
+        <script src="Javascript/sidebar.js"></script>      
+        <!--<script src="Javascript/assign_mentors.js"></script>--> 
         <script>
             $(document).ready(function (e) {
                 $('#home').removeClass('active');
-                $('#mentors').addClass('active');
                 $.ajax({
-                    url: 'load_mentors.jsp',
+                    url: 'select_mentor.jsp?teamId=<%= teamId%>',
                     success: function (data, textStatus, jqXHR) {
                         $('#loader').hide();
                         $('#mentors-container').html(data);
@@ -63,7 +64,7 @@
                     if (txt === '')
                     {
                         $.ajax({
-                            url: 'load_mentors.jsp',
+                            url: 'select_mentor.jsp?teamId=<%= teamId%>',
                             success: function (data, textStatus, jqXHR) {
                                 $('#loader').hide();
                                 $('#mentors-container').html(data);
@@ -73,7 +74,7 @@
                     {
                         $('#mentors-container').html('');
                         $.ajax({
-                            url: 'search_mentors.jsp',
+                            url: 'search_select_mentor.jsp?teamId=<%= teamId%>',
                             data: {search: txt},
                             success: function (data, textStatus, jqXHR) {
                                 $('#mentors-container').html(data);

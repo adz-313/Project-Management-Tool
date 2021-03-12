@@ -26,5 +26,10 @@
 
 
     <%        }
+        if(teams.size() == 0)
+        {
     %>
+    <h2 class="ml-auto mr-auto mt-5">No approvals right now</h2>
+        
+    <%}%>
 </div>

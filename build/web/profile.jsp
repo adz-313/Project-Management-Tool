@@ -25,8 +25,6 @@
             <div id="content">
                 <div class="container-fluid">
                     <div class="row no-gutters">
-
-
                         <div class="col-md-3">
                             <div class="d-flex justify-content-center">
                                 <img src="resources/<%= user.getProfile()%>" alt="..." class="img-thumbnail rounded" style="width: 10rem"/>
@@ -70,12 +68,15 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="Javascript/sidebar.js"></script>   
         <script>
-            $(document).ready(function (e) {
-                console.log('yolo');
+            if (<%= cnt%> === 0)
+            {
+                $('#approvals-badge').hide();
+            } else
+            {
                 $('#approvals-badge').html(
             <%= cnt%>
                 );
-            });
+            }
         </script>
     </body>  
 </html>

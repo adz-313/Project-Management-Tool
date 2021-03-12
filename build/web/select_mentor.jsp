@@ -6,11 +6,9 @@
 <div class="row">
 <%
     DatabaseInterface db = new DatabaseInterface(ConnectionProvider.getConnection());
-    String search = request.getParameter("search");
-    System.out.println(search);
-    ArrayList<Mentor> mentors = db.getMentorsByName(search);
+    ArrayList<Mentor> mentors = db.getMentors();
+    System.out.println(mentors.size());
     for (Mentor m : mentors) {
-       
 %>
 <div class="col-md-4">
     <div class="card mt-2">
@@ -19,12 +17,10 @@
             <h4><%= m.getFname() + " " +  m.getLname() %></h4>
             <h5><%= m.getEmail()%></h5>
             <h6 style="color:#999"><%= m.getSkills()%></h6>
-            <a href="#" class="btn btn-primary">Profile</a>
+            <a href="AssignMentorServlet?id=<%= m.getId() %>&teamId=<%= request.getParameter("teamId") %>" class="btn btn-primary">Select</a>
         </div>
     </div>
 </div>
-
-
 <%
     }
 %>

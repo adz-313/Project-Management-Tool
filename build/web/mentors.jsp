@@ -20,8 +20,7 @@
         <%@include file="navbar.jsp" %>
         <div class="wrapper">
             <%@include file="sidebar.jsp" %>
-            <%  
-                if (user == null) {
+            <%                if (user == null) {
                     response.sendRedirect("login_page.jsp");
                 }
             %>
@@ -47,10 +46,18 @@
         <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script src="Javascript/sidebar.js"></script>      
-        <script src="Javascript/mentors.js"></script> 
+        <script src="Javascript/sidebar.js"></script> 
         <script>
             $(document).ready(function (e) {
+                $('#home').removeClass('active');
+                $('#mentors').addClass('active');
+                $.ajax({
+                    url: 'load_mentors.jsp',
+                    success: function (data, textStatus, jqXHR) {
+                        $('#loader').hide();
+                        $('#mentors-container').html(data);
+                    }
+                });
                 $('#search-mentors').keyup(function () {
                     var txt = $(this).val();
                     if (txt === '')
@@ -77,12 +84,15 @@
             });
         </script>
         <script>
-            $(document).ready(function (e) {
-                console.log('yolo');
+            if (<%= cnt%> === 0)
+            {
+                $('#approvals-badge').hide();
+            } else
+            {
                 $('#approvals-badge').html(
             <%= cnt%>
                 );
-            });
+            }
         </script>
     </body>
 </html>

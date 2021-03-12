@@ -1,6 +1,7 @@
 package com.project_management.database;
 
 import com.project_management.entities.Coordinator;
+import com.project_management.entities.Guideline;
 import com.project_management.entities.Mentor;
 import com.project_management.entities.Project;
 import com.project_management.entities.Student;
@@ -73,7 +74,8 @@ public class DatabaseInterface
                 int approved_by = rs.getInt("approvedBy");
                 String status = rs.getString("approvalStatus");
                 Timestamp timestamp = rs.getTimestamp("timestamp");
-                Team team = new Team(id, created_by, project_id, mentor_id, approved_by, status, timestamp);
+                String remark = rs.getString("remark");
+                Team team = new Team(id, created_by, project_id, mentor_id, approved_by, status, timestamp, remark);
                 approvals.add(team);
             }
         }
@@ -101,7 +103,8 @@ public class DatabaseInterface
                 int approved_by = rs.getInt("approvedBy");
                 String status = rs.getString("approvalStatus");
                 Timestamp timestamp = rs.getTimestamp("timestamp");
-                Team team = new Team(id, created_by, project_id, mentor_id, approved_by, status, timestamp);
+                String remark = rs.getString("remark");
+                Team team = new Team(id, created_by, project_id, mentor_id, approved_by, status, timestamp, remark);
                 approvals.add(team);
             }
         }
@@ -130,7 +133,8 @@ public class DatabaseInterface
                 int approved_by = rs.getInt("approvedBy");
                 String status = rs.getString("approvalStatus");
                 Timestamp timestamp = rs.getTimestamp("timestamp");
-                Team team = new Team(id, created_by, project_id, mentor_id, approved_by, status, timestamp);
+                String remark = rs.getString("remark");
+                Team team = new Team(id, created_by, project_id, mentor_id, approved_by, status, timestamp, remark);
                 approvals.add(team);
             }
         }
@@ -141,16 +145,37 @@ public class DatabaseInterface
         return approvals;
     }
     
-    public boolean updateApprovalStatus(String status, int teamId, int coordinatorId)
+    public boolean updateApprovalStatus(String status, int teamId, int coordinatorId, String remark)
     {
         boolean f = false;
         try
         {
-            String query = "update teams set approvalStatus=? , approvedBy=? where id=?;";
+            String query = "update teams set approvalStatus=? , approvedBy=?, remark=? where id=?;";
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.setString(1, status);
             pstmt.setInt(2, coordinatorId);
-            pstmt.setInt(3, teamId);
+            pstmt.setString(3, remark);
+            pstmt.setInt(4, teamId);
+            System.out.println(pstmt);
+            pstmt.executeUpdate();
+            f = true;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return f;
+    }
+    
+    public boolean assignMentorToTeam(int mentorId, int teamId)
+    {
+        boolean f = false;
+        try
+        {
+            String query = "update teams set mentorId=? where id=?;";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, mentorId);
+            pstmt.setInt(2, teamId);
             System.out.println(pstmt);
             pstmt.executeUpdate();
             f = true;
@@ -181,7 +206,8 @@ public class DatabaseInterface
                 int approved_by = rs.getInt("approvedBy");
                 String status = rs.getString("approvalStatus");
                 Timestamp timestamp = rs.getTimestamp("timestamp");
-                team = new Team(id, created_by, project_id, mentor_id, approved_by, status, timestamp);               
+                String remark = rs.getString("remark");
+                team = new Team(id, created_by, project_id, mentor_id, approved_by, status, timestamp, remark);               
             }
         }
         catch(Exception e)
@@ -328,6 +354,35 @@ public class DatabaseInterface
             e.printStackTrace();
         }
         return mentors;
+    }
+    
+    public Mentor getMentorByID(int sid)
+    {
+        Mentor mentor = null;
+        try
+        {            
+            String query = "select * from mentors where id=?;";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, sid);
+            ResultSet rs = pstmt.executeQuery(); 
+            while(rs.next())
+            {
+                int id = rs.getInt("id");
+                String fname = rs.getString("fname");
+                String lname = rs.getString("lname");
+                String skills = rs.getString("skills");
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+                Timestamp timestamp = rs.getTimestamp("timestamp");
+                String profile = rs.getString("profile");
+                mentor = new Mentor(id, fname, lname, skills, email, password, timestamp, profile);
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return mentor;
     }
     
     public boolean saveStudent(Student student)
@@ -489,5 +544,49 @@ public class DatabaseInterface
             e.printStackTrace();
         }
         return students;
+    }
+    
+    public boolean addGuideline(Guideline g)
+    {
+        boolean f = false;
+        try
+        {
+            String query = "insert into guideline(title, coordinatorId, filename) values(?,?,?)";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setString(1, g.getTitle());
+            pstmt.setInt(2, g.getCoordinatorId());
+            pstmt.setString(3, g.getFilename());
+            pstmt.executeUpdate();
+            f = true;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return f;
+    }
+    
+    public ArrayList<Guideline> getGuidelines()
+    {
+        ArrayList<Guideline> guidelines = new ArrayList<>();
+        try
+        {
+            String query = "select * from guideline;";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next())
+            {
+                int id = rs.getInt("id");
+                String title = rs.getString("title");
+                int cid = rs.getInt("coordinatorId");
+                String filename = rs.getString("filename");
+                guidelines.add(new Guideline(id, title, cid, filename));
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return guidelines;
     }
 }

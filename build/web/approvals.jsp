@@ -43,12 +43,15 @@
             });
         </script> 
         <script>
-            $(document).ready(function (e) {
-                console.log('yolo');
+            if (<%= cnt%> === 0)
+            {
+                $('#approvals-badge').hide();
+            } else
+            {
                 $('#approvals-badge').html(
             <%= cnt%>
                 );
-            });
+            }
         </script>
     </body>
 </html>

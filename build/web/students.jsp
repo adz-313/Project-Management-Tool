@@ -20,8 +20,7 @@
         <%@include file="navbar.jsp" %>
         <div class="wrapper">
             <%@include file="sidebar.jsp" %>
-            <%  
-                if (user == null) {
+            <%                if (user == null) {
                     response.sendRedirect("login_page.jsp");
                 }
             %>
@@ -76,12 +75,15 @@
             });
         </script>
         <script>
-            $(document).ready(function (e) {
-                console.log('yolo');
+            if (<%= cnt%> === 0)
+            {
+                $('#approvals-badge').hide();
+            } else
+            {
                 $('#approvals-badge').html(
             <%= cnt%>
                 );
-            });
+            }
         </script>
     </body>
 </html>

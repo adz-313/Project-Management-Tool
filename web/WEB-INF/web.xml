@@ -32,6 +32,18 @@
         <servlet-name>UpdateApprovalServlet</servlet-name>
         <servlet-class>com.project_management.servlets.UpdateApprovalServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AssignMentorServlet</servlet-name>
+        <servlet-class>com.project_management.servlets.AssignMentorServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddGuidelineServlet</servlet-name>
+        <servlet-class>com.project_management.servlets.AddGuidelineServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DownloadGuidelineServlet</servlet-name>
+        <servlet-class>com.project_management.servlets.DownloadGuidelineServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>project_overview_jsp</servlet-name>
         <url-pattern>/project-overview</url-pattern>
@@ -42,7 +54,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>TestServlet</servlet-name>
-        <url-pattern>/TestServlet</url-pattern>
+        <url-pattern>/TestServlet1</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -63,6 +75,18 @@
     <servlet-mapping>
         <servlet-name>UpdateApprovalServlet</servlet-name>
         <url-pattern>/UpdateApprovalServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AssignMentorServlet</servlet-name>
+        <url-pattern>/AssignMentorServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddGuidelineServlet</servlet-name>
+        <url-pattern>/AddGuidelineServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DownloadGuidelineServlet</servlet-name>
+        <url-pattern>/DownloadGuidelineServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

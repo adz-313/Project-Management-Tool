@@ -27,14 +27,14 @@
                 <li id="students">
                     <a href="students.jsp">Students</a>
                 </li>
-                <li>
+                <li id="add">
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Add</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li id="team_approval">
                             <a href="#">Task</a>
                         </li>
                         <li id="task_approval">
-                            <a href="#">Guideline</a>
+                            <a href="guidelines.jsp">Guideline</a>
                         </li>
                     </ul>
                 </li>
