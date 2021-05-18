@@ -1,0 +1,31 @@
+/*---------------------------------------------------------------------------------------------------------------------------------------------*/
+/*                                                          Basic Setup                                                                        */
+/*---------------------------------------------------------------------------------------------------------------------------------------------*/
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%; 
+}
+  
+body {
+    box-sizing: border-box; 
+    font-family: "Barlow", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.7;
+}
+  
+body a {
+    text-decoration: none;
+}
+
+.row {
+    margin: 0 auto;
+    max-width: 1140px;
+}

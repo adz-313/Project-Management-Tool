@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>Registeration Form</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="CSS/register.css">
+        <style>
+            *{
+                margin:0;
+                padding: 0;
+                font-family: sans-serif;
+            }
+
+            .form-title{
+                font-size:25px;
+                color:#403866;
+                line-height: 1.2;
+                text-transform:uppercase;
+                text-align: center;
+                width:100%;
+                display:block;
+                margin-bottom:40px;
+            }
+
+            .form-title i{
+                font-size: 50px;
+                color:#fff;
+                border:1.5px solid #00b665;
+                width:100px;
+                border-radius: 100%;
+                height:100px;
+                line-height: 90px;
+                transition:0.5s ease-in-out;
+            }
+
+            .form-title i:hover{
+                background-color: #fff;
+                color:#00b665;
+                border-color:#fff;
+            }
+
+            .reg{
+                /*height: 100%;*/
+                width: 100%;
+                background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(Images/image_4.jpg);
+                background-position: center;
+                background-size: cover;
+                position: absolute;
+                object-fit: cover;
+            }
+            .form-box{
+                width: 700px;
+                height: 700px;
+                position: relative;
+                margin:auto;
+                /*margin-left: 300px;*/
+                margin-top: 70px;
+                background-color: rgba(0,0,0,.6);
+                padding: 5px;
+                overflow: hidden;
+                justify-content: center;
+
+            }
+            .button-box{
+                width:521px ;
+                margin:35px auto;
+                position: relative;
+                box-shadow: 0 0 20px 9px #00b665;
+                border-radius: 30px;
+            }
+            .toggle-btn{
+                padding:20px 57.8px ;
+                cursor: pointer;
+                background: white;
+                border-radius: 30px;
+                border: 0;
+                outline: none;
+                position: relative;
+            }
+            #butn{
+                top: 0;
+                left: 0;
+                position: relative;
+                height: 100%;
+                background: linear-gradient(to right,#ff105f,#ffad06);
+                border-radius: 30px;
+                transition: .5s;
+            }
+            .input-group{
+                top: 250px;
+                position: absolute;
+                padding-left: 100px;
+
+                width: 500px;
+                transition: .5s;
+            }
+            .name{
+                display: flex;
+                padding-bottom:20px ;
+            }
+            .enp{
+                display: inline-flex;
+                padding-bottom:20px ;
+            }
+            .dept{
+                padding-right: 23px;
+                padding-bottom: 20px;
+            }
+            .dnr{
+                display: flex;
+                padding-bottom:20px ;
+            }
+
+            .input100{
+                width:100%; 
+                padding:10px 0;
+                padding-left: 20px;
+                margin:5px 0;
+                color:#403866;
+                font-size: 16px;
+                background-color: #f8f8f9;
+                height:30px;
+                border-radius: 6px;
+            }
+            .focus-input100{
+                position: absolute;
+                display:block;
+                width:calc(100% + 2px);
+                height:calc(100% + 2px);
+                top:-1px;
+                left:-1px;
+                pointer-events: none;
+                border:2px solid #00b665;
+                border-radius: 3px;
+                visibility: hidden;
+                opacity: 0;
+                -webkit-transition:all 0.4s;
+                transition:all 0.4s;
+                -webkit-transform:scaleX(1.1) scaleY(1.3);
+                transform:scaleX(1.1) scaleY(1.3);
+            }
+
+            .input100:focus + .focus-input100{
+                visibility: visible;
+                opacity: 1;
+                -webkit-transform:scale(1);
+                transform:scale(1);
+            }
+
+
+            p{
+                font-size:18px;
+                line-height: 1.7;
+                color:black;
+                text-decoration: none;
+                margin:0;
+                transition:all 0.4s;    
+            }
+            a{
+                font-size:18px;
+                line-height: 1.7;
+                color:#fff;
+                text-decoration: none;
+                margin:0;
+                transition:all 0.4s;
+            }
+            a:focus{
+                outline:none;
+            }
+            .container-form-btn{
+                width:100%;
+                display:flex;
+                flex-wrap:wrap;
+            }
+
+            .form-btn{
+                font-size:16px;
+                color:#fff;
+                line-height: 1.2;
+                text-transform: uppercase;
+                display:flex;
+                justify-content: center;
+                align-items: center;
+                padding:0 20px;
+                width:100%;
+                height:52px;
+                cursor: pointer;
+                background-color: #00b665;
+                border-radius: 6px;
+                transition:all 0.4s;
+                -webkit-transition:all 0.4s;
+            }
+
+            .form-btn:hover{
+                background-color: #00b665;
+            }
+
+            #mentor{
+                left: 700px;
+            }
+            #coordinator{
+                left: 700px;
+            }
+
+
+        </style>
+
+    </head>
+    <body>
+        <div class="reg">
+            <div class="form-box">
+                <div class="button-box">
+
+                    <button type="button" id="b1" style="background-color: #00b655;" class="toggle-btn" onclick="fun1()" >Student</button>
+                    <button type="button" id="b2" class="toggle-btn" onclick="fun2()">Mentor</button>
+                    <button type="button" id="b3" class="toggle-btn" onclick="fun3()">Coordinator</button>
+                </div>
+                <span class="form-title">
+                    <i class="fas fa-user"></i>
+                </span>
+
+                <form class="input-group" id="student">
+                    <div class="name">
+                        <input class="input100" type="text" placeholder="FIRST NAME" style="margin-right: 20px;" required>
+                        <input class="input100" type="text" placeholder="LAST NAME" style="margin-left: 20px;" required> 
+                        <span class="focus-input100"></span>
+
+                    </div>
+                    <div class="dnr"> 
+                        <input class="input100" type="text" placeholder="DIVISION" style="margin-right: 20px;" >
+                        <input class="input100" type="text" placeholder="ROLL NUMBER" style="margin-left: 20px;" >
+                        <span class="focus-input100"></span>
+
+                    </div>
+                    <div class="dept">
+                        <input class="input100" type="text" placeholder="DEPARTMENT" >
+                        <span class="focus-input100"></span>
+
+                    </div>
+                    <div class="enp">
+                        <input class="input100" type="text" placeholder="EMAIL-ID" style="margin-right: 20px;">
+                        <input class="input100" type="password" placeholder="PASSWORD" style="margin-left: 20px;" >
+                        <span class="focus-input100"></span>
+
+                    </div>
+
+                    <div class="container-form-btn">
+                        <input type="submit" class="form-btn" value="Sign Up">
+                    </div>
+
+
+                    <div class="container-form-btn">
+                        <p style="margin-left: 100px;">Already have an account? &nbsp;</p><a href="login_page.jsp"> &nbsp; SIGN IN</a>
+                    </div>
+
+
+
+                </form>
+
+                <form name="coordinator" class="input-group" id="coordinator" action="CoordinatorRegisterServlet" method="post">
+                    <div class="name">
+                        <input name="profile_pic" class="input100" type="file" />
+                    </div>                    
+                    <div class="name">
+                        <input name="fname" id="fname" class="input100" type="text" placeholder="FIRST NAME" style="margin-right: 20px;" />
+                        <input name="lname" id="lname" class="input100" type="text" placeholder="LAST NAME" style="margin-left: 20px;" />
+                        <span class="focus-input100"></span>
+
+                    </div>
+                    <div class="dept">
+                        <input name="department" id="department" class="input100" type="text" placeholder="DEPARTMENT" >
+                        <span class="focus-input100"></span>
+
+                    </div>
+                    <div class="dept">
+                        <input name="subject" id="subject" class="input100" type="text" placeholder="SUBJECT" >
+                        <span class="focus-input100"></span>
+
+                    </div>
+
+                    <div class="enp">
+                        <input name="email" id="email" class="input100" type="email" placeholder="EMAIL-ID" style="margin-right: 20px;">
+                        <input name="password" id="password" class="input100" type="password" placeholder="PASSWORD" style="margin-left: 20px;" >
+                        <span class="focus-input100"></span>
+
+                    </div>
+
+                    <div class="container-form-btn">
+                        <input type="submit" class="form-btn" value="Sign Up" id="submit-btn-coordinator">
+                        <span class="focus-input100"></span>
+
+                    </div>
+
+                    <div class="container-form-btn">
+                        <p style="margin-left: 100px;">Already have an account? &nbsp;</p><a href="login_page.jsp"> &nbsp; SIGN IN</a>
+                    </div>
+
+
+
+                </form>
+
+                <form class="input-group" id="mentor">
+                    <div class="name">
+                        <input class="input100" type="text" placeholder="FIRST NAME" style="margin-right: 20px;">
+                        <input class="input100" type="text" placeholder="LAST NAME" style="margin-left: 20px;" >   
+                        <span class="focus-input100"></span>
+
+                    </div>
+                    <div class="dept"><input class="input100" type="text" placeholder="SKILLS" ></div>
+                    <div class="enp">
+                        <input class="input100" type="text" placeholder="EMAIL-ID" style="margin-right: 20px;">
+                        <input class="input100" type="password" placeholder="PASSWORD" style="margin-left: 20px;" >
+                        <span class="focus-input100"></span>
+
+                    </div>
+
+                    <div class="container-form-btn">
+                        <input type="submit" class="form-btn" value="Sign Up">
+                    </div>
+
+
+                    <div class="container-form-btn">
+                        <p style="margin-left: 100px;">Already have an account? &nbsp;</p><a href="login_page.jsp"> &nbsp; SIGN IN</a>
+                    </div>
+
+
+
+                </form>
+                <div class="loader" id="loader" style="display: none">
+                    <span class="fa fa-refresh fa-spin fa-3x"></span>
+                    <h5>Please wait...</h5>
+                </div>
+                <div class="modal-container" id="modal-container">
+                    <div class="modal">
+                        <div class="modal-content">
+                            <img class="modal-img" src="Images/check.png" alt="success">
+                            <p class="modal-text">Registration Successful</p>
+                        </div>
+                        <a class="modal-button" id="button-close" href="login_page.jsp">Continue</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="Javascript/register.js"></script>
+        <script>
+                        var x = document.getElementById("student");
+                        var y = document.getElementById("mentor");
+                        var z = document.getElementById("coordinator");
+                        // var u=document.getElementById("butn").style.color="#00b655";
+
+                        function fun1() {
+                            x.style.left = "0px";
+                            y.style.left = "700px";
+                            z.style.left = "700px";
+                            document.getElementById("b1").style.backgroundColor = "#00b665";
+                            document.getElementById("b2").style.backgroundColor = "white";
+                            document.getElementById("b3").style.backgroundColor = "white";
+
+                        }
+
+                        function fun2() {
+                            x.style.left = "700px";
+                            y.style.left = "0px";
+                            z.style.left = "700px";
+                            document.getElementById("b2").style.backgroundColor = "#00b665";
+                            document.getElementById("b1").style.backgroundColor = "white";
+                            document.getElementById("b3").style.backgroundColor = "white";
+                        }
+                        function fun3() {
+                            x.style.left = "700px"
+                            z.style.left = "0px"
+                            y.style.left = "700px"
+                            document.getElementById("b3").style.backgroundColor = "#00b665";
+                            document.getElementById("b2").style.backgroundColor = "white";
+                            document.getElementById("b1").style.backgroundColor = "white";
+                        }
+        </script>
+
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                console.log('loaded...');
+                $('#coordinator').on('submit', function (event) {
+                    event.preventDefault();
+                    let f = validateForm();
+                    if (f === true)
+                    {
+                        console.log('in if');
+                        let form = new FormData(this);
+                        $('#submit-btn-coordinator').hide();
+                        $('#loader').show();
+                        $.ajax({
+                            url: "CoordinatorRegisterServlet",
+                            type: 'POST',
+                            data: form,
+                            success: function (data, textstatus, adfa) {
+                                console.log(data);
+                                $('#submit-btn-coordinator').show();
+                                $('#loader').hide();
+                            },
+                            error: function (adfa, textstatus, errorThrown) {
+                                console.log(adfa);
+                                $('#submit-btn-coordinator').show();
+                                $('#loader').hide();
+                            },
+                            processData: false,
+                            contentType: false
+                        });
+                    }
+                    else
+                    {
+                        container.classList.remove('show');
+                    }
+                });
+            });
+            const container = document.getElementById('modal-container');
+            const open = document.getElementById('submit-btn-coordinator');
+            const close = document.getElementById('button-close');
+
+            open.addEventListener('click', () => {
+                container.classList.add('show');
+            });
+
+            close.addEventListener('click', () => {
+                container.classList.remove('show');
+            });
+        </script>
+
+    </body>
+</html>
+

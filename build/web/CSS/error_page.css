@@ -1,0 +1,19 @@
+.error_img {
+    width: 33%;
+}
+
+.row {
+    margin-top: 20px;
+}
+
+.error_msg {
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin: 0 auto;
+}
+
+.error_text {
+    margin: 0 auto;
+    font-size: 15px;
+}

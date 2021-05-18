@@ -1,0 +1,106 @@
+body {
+    background-color: white;
+    color:hsl(230, 29%, 20%);
+    font-family: 'Barlow', sans-serif;
+}
+
+body::after{
+    height: 65vh;
+    width: 55vw;
+    background-color: #087EE1;
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    border-bottom-left-radius: 100px;
+}
+
+h1, h3, button, nav, a {
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+}
+
+h1{
+    font-size: 5em;
+    margin: 0;
+    line-height: 1;
+}
+
+h3{
+    font-weight: 400;
+    color: hsl(231, 7%, 65%);
+    font-size: 1.3em;
+    letter-spacing: 4px;
+}
+
+h3 span{
+    background-color: hsl(230, 29%, 20%);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 50px;
+    margin-right: 10px;
+}
+
+p{
+    font-size: 1.4em;
+    color: hsl(230, 29%, 20%);
+}
+
+.container{
+    max-width: 100%;
+    width: 1300px;
+    height: 100%;
+    justify-content: space-between;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.container > div{
+    flex: 1;
+}
+
+.flex{
+    display: flex;
+    align-items: center;
+    margin-top: 80px;
+}
+
+main{
+    display: flex;
+    align-items: center;
+    height: calc(100vh - 250);
+}
+
+button{
+    background-color: #087EE1;
+    color: white;
+    border: 0;
+    padding: 10px 30px;
+    font-size: 1.2em;
+    border-radius: 10px;
+    letter-spacing: 2px;
+    margin-right: 20px;
+}
+
+ul{
+    display: flex;
+    padding: 0;
+    list-style-type: none;
+}
+
+ul, li{
+    margin-left: 40px;
+}
+
+ul, li, a{
+    color: #fefefe;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.1em;;
+}
+
+.illustration{
+    transform:scale(0.898) translateX(11%);
+}
